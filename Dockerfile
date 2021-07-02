@@ -21,8 +21,6 @@ RUN wget https://nginx.org/download/nginx-1.21.0.tar.gz -P /root \
     --sbin-path=/usr/local/nginx/nginx \
     --conf-path=/usr/local/nginx/nginx.conf \
     --pid-path=/usr/local/nginx/nginx.pid \
-    --user=root \
-    --group=root \
     --with-http_realip_module \
     --with-http_ssl_module \
     --with-http_v2_module \
@@ -30,8 +28,7 @@ RUN wget https://nginx.org/download/nginx-1.21.0.tar.gz -P /root \
     && make && make install
 
 # remove all package
-RUN rm -rf /root/openssl-1.1.1k.tar.gz \
-    && rm -rf /root/nginx-1.21.0.tar.gz
+RUN rm -rf /root/*
 
 EXPOSE 80 443
 
