@@ -9,7 +9,7 @@ docker pull amoydreamer/nginx:1.21.0
 ## Usage
 
 ### Ready
-- For easy maintenance of standalone site configuration, you can edit config file in the directory **/path/to/nginx/conf.d**, like this named **test.demo.com.conf** file:
+- For easy maintenance of standalone site configuration, you can edit config file in the directory **/path/to/nginx/conf.d**, like this file named **test.demo.com.conf**
 ```
 server {
     listen 80;
