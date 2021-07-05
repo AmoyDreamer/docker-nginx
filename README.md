@@ -8,6 +8,31 @@ docker pull amoydreamer/nginx:1.21.0
 
 ## Usage
 
+### Ready
+- For easy maintenance of standalone site configuration, you can edit config file in the directory **/path/to/nginx/conf.d**, like this named **test.demo.com.conf** file:
+```
+server {
+    listen 80;
+    server_name test.demo.com;
+    root /path/to/projects/test.demo.com;
+    error_log /path/to/logs/test.demo.com.error.log;
+    access_log  /path/to/logs/test.demo.com.access.log;
+    location / {
+        index index.html;
+    }
+}
+```
+- You must import the config directory **conf.d** in **nginx.conf** file, like this:
+```
+...
+http {
+    include conf.d/*.conf;
+    ...
+}
+...
+```
+- The directory **/path/to/nginx/conf.d** and the file **/path/to/nginx/nginx.conf** must be mounted data volumes when creating containers.
+
 ### Create a runtime container with current image
 ```
 docker run --name nginx-1.21.0 -d \
@@ -17,6 +42,8 @@ docker run --name nginx-1.21.0 -d \
 -v /path/to/nginx/nginx.conf:/usr/local/nginx/nginx.conf \
 -v /path/to/nginx/conf.d:/usr/local/nginx/conf.d \
 -v /path/to/https_certs:/etc/ssl/https_certs \
+-v /path/to/projects:/data/projects \
+-v /path/to/logs:/data/logs \
 amoydreamer/nginx:1.21.0
 ```
 
