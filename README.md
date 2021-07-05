@@ -13,7 +13,10 @@ docker pull amoydreamer/nginx:1.21.0
 ```
 server {
     listen 80;
+    listen 443 ssl;
     server_name test.demo.com;
+    ssl_certificate      /path/to/https_certs/test.demo.com.crt;
+    ssl_certificate_key  /path/to/https_certs/test.demo.com.key;
     root /path/to/projects/test.demo.com;
     error_log /path/to/logs/test.demo.com.error.log;
     access_log  /path/to/logs/test.demo.com.access.log;
